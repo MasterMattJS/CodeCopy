@@ -465,7 +465,13 @@ function inputEvent(element) {
 }
 
 function codeShorter(code) {
+
+    while (code.includes(" none repeat scroll 0% 0%")) {
+        code = code.replace(" none repeat scroll 0% 0%", "")
+    }
     /*
+
+
         while (code.includes("00")) {
             code = code.replace("00", "-");
         }
