@@ -5,8 +5,6 @@ function character() {
             if (document.getElementsByTagName('menu-item')[i].innerHTML.includes('class="navbar-link active"')) {
 
                 showButtons();
-            } else {
-                removeButtons();
             }
         }
 
@@ -16,55 +14,49 @@ function character() {
 
 
 function showButtons() {
-    if (document.getElementById('copyCodeButton') == null) {
-        var getOCcode = document.createElement("button");
-        getOCcode.textContent = "Get character code";
-        getOCcode.style.position = "fixed";
-        getOCcode.style.left = "50px";
-        getOCcode.style.top = "50px";
-        getOCcode.style.zIndex = "999999";
-        getOCcode.style.backgroundColor = "rgba(255,255,255)";
-        getOCcode.style.color = "rgba(0,0,0)";
-        getOCcode.style.padding = "10px";
-        getOCcode.style.borderRadius = "5px";
-        getOCcode.id = "copyCodeButton";
-        getOCcode.style.marginTop = "10px";
-        getOCcode.onclick = function () {
-            copyOC();
-        };
-        document.body.appendChild(getOCcode);
-    }
+    var divOrSomething = document.getElementsByClassName('form-group text-center');
+
+    if (divOrSomething != null && divOrSomething[0] != null) {
+
+        if (document.getElementById('copyCodeButton') == null) {
+            var getOCcode = document.createElement("button");
+            getOCcode.textContent = "Get character";
 
 
-    if (document.getElementById('pasteCodeButton') == null) {
-        var pasteOCcode = document.createElement("button");
-        pasteOCcode.textContent = "Paste character with code"
-        pasteOCcode.style.position = "fixed";
-        pasteOCcode.style.left = "50px";
-        pasteOCcode.style.top = "120px";
-        pasteOCcode.style.zIndex = "999999";
-        pasteOCcode.style.backgroundColor = "rgba(255,255,255)";
-        pasteOCcode.style.color = "rgba(0,0,0)";
-        pasteOCcode.id = "pasteCodeButton";
-        pasteOCcode.style.padding = "10px";
-        pasteOCcode.style.borderRadius = "5px";
-        pasteOCcode.onclick = function () {
-            pasteOC();
-        };
-        document.body.appendChild(pasteOCcode);
-
-    }
-}
+            getOCcode.classList.add("btn");
+            getOCcode.classList.add("btn-lg");
+            getOCcode.classList.add("btn-default");
+            getOCcode.classList.add("ml-2");
 
 
-function removeButtons() {
-    if (document.getElementById('pasteCodeButton') != null) {
-        document.getElementById('pasteCodeButton').remove();
-    }
-    if (document.getElementById('copyCodeButton') != null) {
-        document.getElementById('copyCodeButton').remove();
+
+
+            getOCcode.id = "copyCodeButton";
+            getOCcode.style.marginTop = "10px";
+            getOCcode.onclick = function () {
+                copyOC();
+            };
+            divOrSomething[0].appendChild(getOCcode);
+        }
+        if (document.getElementById('pasteCodeButton') == null) {
+            var pasteOCcode = document.createElement("button");
+            pasteOCcode.textContent = "Paste Character"
+            pasteOCcode.classList.add("btn");
+            pasteOCcode.classList.add("btn-lg");
+            pasteOCcode.classList.add("btn-default");
+            pasteOCcode.classList.add("ml-2");
+
+
+            pasteOCcode.id = "pasteCodeButton";
+            pasteOCcode.style.marginTop = "10px";
+            pasteOCcode.onclick = function () {
+                pasteOC();
+            };
+            divOrSomething[0].appendChild(pasteOCcode);
+        }
     }
 }
+
 
 
 function copyOC() {
