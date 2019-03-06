@@ -119,7 +119,7 @@ function pasteOC() {
 
     var isStatusGood = true;
 
-    settings = [];
+    var settings = [];
     var j = 0;
 
     var code = prompt("Paste your pony code here", );
