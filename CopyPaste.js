@@ -398,21 +398,13 @@ function pasteTab(code, type) {
 
                             inputEvent(input[j]);
                             if (bmBox != null && bmBox[i] != null) {
-                                //METHOD 1 DOSENT WORK
-                                bmBox[i].click();
-
-                                //METHOD 2 DOSENT WORK
-                                var evt = new MouseEvent("click", {
-                                    bubbles: true,
-                                    cancelable: true,
-                                    view: window
-                                });
-                                bmBox[i].dispatchEvent(evt);
-                                //METHOD 3 WORKS ONLY VISUALLY
-                                bmBox[i].style.background = rgbv;
-                                inputEvent(bmBox[i]);
-
+                                clickEvent(bmBox[i]);
                             }
+
+                        }
+                        if (i == 24) {
+                            input[j].value = "";
+                            inputEvent(input[j]);
                         }
                     }
             }
@@ -439,13 +431,13 @@ function unlock() {
 
 }
 
-function clickEvent() {
-    var ie = new MouseEvent('click', {
-        'clientX': 814,
-        'clientY': 534
-    });
-    document.dispatchEvent(ie);
+function clickEvent(element) {
+    var i0 = new MouseEvent('mousedown', {});
+    var i1 = new MouseEvent('mouseup', {});
+    element.dispatchEvent(i1);
+    element.dispatchEvent(i0);
 }
+
 
 function inputEvent(element) {
     var ie = new InputEvent('input', {
@@ -461,34 +453,12 @@ function codeShorter(code) {
     while (code.includes(" none repeat scroll 0% 0%")) {
         code = code.replace(" none repeat scroll 0% 0%", "")
     }
-    /*
 
-
-        while (code.includes("00")) {
-            code = code.replace("00", "-");
-        }
-        while (code.includes("--")) {
-            code = code.replace("--", "*");
-        }
-        while (code.includes("**")) {
-            code = code.replace("**", "=");
-        }
-    */
     return code;
 }
 
 function codeDecoder(code, type, status = false) {
-    /*
-        while (code.includes("=")) {
-            code = code.replace("=", "**");
-        }
-        while (code.includes("*")) {
-            code = code.replace("*", "--");
-        }
-        while (code.includes("-")) {
-            code = code.replace("-", "00");
-        }
-    */
+
     var output = -1;
 
     var outputS = code.split(";");
